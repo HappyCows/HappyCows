@@ -1,7 +1,5 @@
 .DS_Store
 
-config/config.json
-config.json
 
 # dotenv environment variables file
 .env
@@ -114,4 +112,3 @@ dist
 
 
 package-lock.json
-config/config.json
