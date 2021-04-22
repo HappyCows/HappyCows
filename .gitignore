@@ -115,4 +115,3 @@ dist
 
 package-lock.json
 config/config.json
-utils/auth.js
