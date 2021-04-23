@@ -8,7 +8,8 @@ module.exports = async (req, res)=>{
     {data: 
         {
             commons: commons,
-            commons_user: commons_user
+            commons_user: commons_user,
+            user: user_obj
         }
     }
 )};
