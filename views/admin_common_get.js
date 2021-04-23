@@ -31,7 +31,8 @@ module.exports = async (req, res) => {
                 cowAvgHealth: cowAvgHealth,
                 reports: reports
             },
-        moment: moment
+        moment: moment,
+        dateFormat: "ddd MM/DD/YYYY hh:mm:ssA"
         }
     )
 };
