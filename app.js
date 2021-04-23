@@ -31,6 +31,8 @@ db.Configs.sync();
 db.Cows.sync();
 db.TieredTaxings.sync();
 db.UserWealths.sync();
+db.CommonsUserReport.sync();
+db.CommonsUserReportItem.sync();
 
 //testing api section
 // view engine setup
