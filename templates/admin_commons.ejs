@@ -17,6 +17,50 @@
         <div class="row ">
             <div class="col mt-3">
                 <h1 style="color: white" >CommonId: <%= data.commonId %> </h1>
+                
+                <div class="row ">
+                    <div class="col mt-3">
+                        <h1 style="color: white" >CommonId: <%= data.commonId %> </h1>
+                        <div class="card">
+                            <h5 class="card-header">Reports </h5>
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Date</th>
+                                            <th scope="col">CommonId</th>
+                                            <th scope="col">Delete</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <% data.reports.forEach(result=>{ %>
+                                        <tr>
+                                            <td scope="row"><%= result["id"] %></td>
+                                            <td scope="row"><a href="/admin/report/<%= result['id'] %>"><%= moment(result["date"]).format("ddd MM/DD/yyyy hh:mm:ssA") %></a></td>
+                                            <td scope="row"><a href="/admin/common/<%= result['CommonId'] %>"><%= result['CommonId'] %></a></td>
+                                            <td>
+                                                <form action="/admin/common/remove_report" method="post">
+                                                    <input type="hidden" class="form-control" name="reportId" id="reportId"
+                                                                    value="<%= result['id'] %>">
+                                                    <input type="hidden" class="form-control" name="cid" id="cid"
+                                                                    value="<%= result['CommonId'] %>">
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <ion-icon name="close-outline"></ion-icon>
+                                                    </button>
+                                                </form>                    
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+        
+                    </div>
+                </div>
+                
+                
                 <div class="card">
                     <h5 class="card-header">Players </h5>
                     <div class="card-body">

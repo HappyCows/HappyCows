@@ -1,0 +1,126 @@
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="/css/admin.css" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="https://unpkg.com/tableexport@5.2.0/dist/css/tableexport.min.css">
+
+
+    <title>Admin Report</title>
+</head>
+
+<body>
+    <div class="background parallax">
+        <div class="container">
+            <div class="row ">
+                <div class="col mt-3">
+                    <div class="card">
+                        <h5 class="card-header">Report </h5>
+                        <div class="card-body">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Date</th>
+                                        <th scope="col">CommonId</th>
+                                        <th scope="col">Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% data.reports.forEach(result=>{ %>
+                                        <tr>
+                                            <td scope="row">
+                                                <%= result["id"] %>
+                                            </td>
+                                            <td scope="row"><a href="/admin/report/<%= result['id'] %>">
+                                                    <%= moment(result["date"]).format("ddd MM/DD/yyyy hh:mm:ssA") %>
+                                                </a></td>
+                                            <td scope="row"><a href="/admin/common/<%= result['CommonId'] %>">
+                                                    <%= result['CommonId'] %>
+                                                </a></td>
+                                            <td>
+                                                <form action="/admin/common/remove_report" method="post">
+                                                    <input type="hidden" class="form-control" name="reportId"
+                                                        id="reportId" value="<%= result['id'] %>">
+                                                    <input type="hidden" class="form-control" name="cid" id="cid"
+                                                        value="<%= result['CommonId'] %>">
+                                                    <button type="submit" class="btn btn-danger btn-sm">
+                                                        <ion-icon name="close-outline"></ion-icon>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="row ">
+                <div class="col mt-3">
+
+                    <div class="card">
+                        <h5 class="card-header">Report Detail</h5>
+                        <div class="card-body">
+                            <table class="table table-bordered table table-hover" id="reportItems" >
+                                <thead>
+                                    <tr>
+                                        <th scope="col">id</th>
+                                        <th scope="col">firstname</th>
+                                        <th scope="col">lastName</th>
+                                        <th scope="col">email</th>
+                                        <th scope="col">cows</th>
+                                        <th scope="col">wealth</th>
+                                        <th scope="col">date</th>
+                                        <th scope="col">CommonId</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% data.reportItems.forEach(item=>{ %>
+                                        <tr>
+                                            <% Object.keys(item).map((key)=>{ %>
+                                                <td>
+                                                    <%= (key==="date") ? 
+                                                       moment(item["date"]).format("ddd MM/DD/yyyy hh:mm:ssA")
+                                                      : item[key] 
+                                                    %>
+                                                </td>
+                                                <% }); %>
+                                        </tr>
+                                        <% }); %>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <div class="background3 parallax"></div>
+</body>
+
+
+
+<%- include("footer") %>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        function ExportTable() {
+            $("#reportItems").tableExport({
+                formats: ["csv"],           // (String[]), filetypes for the export
+            });
+        }
+        ExportTable();
+    });
+</script>
