@@ -9,6 +9,8 @@ db.TieredTaxings.sync();
 db.Cows.sync();
 db.Commons.sync();
 db.UserWealths.sync();
+db.CommonsUserReport.sync();
+db.CommonsUserReportItem.sync();
 
 async function get_conf_id_2(cid){
     return await db.Configs.findAll({
@@ -125,11 +127,53 @@ async function get_common_health(cid) {
     return result;
 }
 
+async function get_reports(cid) {
+    let result = await db.sequelize.query(
+        'SELECT id,date,CommonId FROM CommonsUserReports WHERE CommonId = ?',
+        {
+            replacements: [cid],
+            type: QueryTypes.SELECT
+        }).then((dbRes) => {
+        return dbRes;
+    });
+    return result;
+}
+
+async function get_report(reportId) {
+    let result = await db.sequelize.query(
+        'SELECT id,date,CommonId FROM CommonsUserReports WHERE id = ?',
+        {
+            replacements: [reportId],
+            type: QueryTypes.SELECT
+        }).then((dbRes) => {
+        return dbRes;
+    });
+    return result;
+}
+
+async function get_report_items(reportId) {
+    let result = await db.sequelize.query(
+
+        'SELECT i.id, u.firstname, u.lastName, u.email, i.cows, i.wealth, r.date, r.CommonId ' + 
+        'FROM Users as u, CommonsUserReportItems as i, CommonsUserReports as r ' + 
+        'WHERE u.id = i.UserId and i.CommonsUserReportId = r.id and r.id = ?',
+        {
+            replacements: [reportId],
+            type: QueryTypes.SELECT
+        }).then((dbRes) => {
+        return dbRes;
+    });
+    return result;
+}
+
 module.exports = {
     create_common,
     get_commons,
     get_common_info,
     milk_test,
     get_avg_cow_health,
-    get_common_health
+    get_common_health,
+    get_reports,
+    get_report,
+    get_report_items
 }
