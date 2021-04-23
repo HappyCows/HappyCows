@@ -36,7 +36,7 @@
                                         <% data.reports.forEach(result=>{ %>
                                         <tr>
                                             <td scope="row"><%= result["id"] %></td>
-                                            <td scope="row"><a href="/admin/report/<%= result['id'] %>"><%= moment(result["date"]).format("ddd MM/DD/yyyy hh:mm:ssA") %></a></td>
+                                            <td scope="row"><a href="/admin/report/<%= result['id'] %>"><%= moment(result["date"]).format(dateFormat) %></a></td>
                                             <td scope="row"><a href="/admin/common/<%= result['CommonId'] %>"><%= result['CommonId'] %></a></td>
                                             <td>
                                                 <form action="/admin/common/remove_report" method="post">

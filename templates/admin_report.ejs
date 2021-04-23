@@ -39,7 +39,7 @@
                                                 <%= result["id"] %>
                                             </td>
                                             <td scope="row"><a href="/admin/report/<%= result['id'] %>">
-                                                    <%= moment(result["date"]).format("ddd MM/DD/yyyy hh:mm:ssA") %>
+                                                    <%= moment(result["date"]).format(dateFormat) %>
                                                 </a></td>
                                             <td scope="row"><a href="/admin/common/<%= result['CommonId'] %>">
                                                     <%= result['CommonId'] %>
@@ -91,7 +91,7 @@
                                             <% Object.keys(item).map((key)=>{ %>
                                                 <td>
                                                     <%= (key==="date") ? 
-                                                       moment(item["date"]).format("ddd MM/DD/yyyy hh:mm:ssA")
+                                                       moment(item["date"]).format(dateFormat)
                                                       : item[key] 
                                                     %>
                                                 </td>
