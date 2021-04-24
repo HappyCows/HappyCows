@@ -11,7 +11,8 @@ module.exports = async (req, res) => {
                 reports: reports,
                 reportItems: reportItems
             },
-        moment: moment
+        moment: moment,
+        dateFormat: "ddd MM/DD/YYYY hh:mm:ssA"
         }
     )
 };
