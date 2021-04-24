@@ -5,7 +5,6 @@ const {get_reports} = require("../apis/admin/commons");
 const moment = require('moment');
 
 module.exports = async (req, res) => {
-   // const users = await get_users_in_common(req, req.params.commonId);
     const cowPrice = await get_cow_price(req.params.commonId);
     const cowMax = await get_max_cow(req.params.commonId);
     const degradeRate = await get_degrade_rate(req.params.commonId);
@@ -19,7 +18,6 @@ module.exports = async (req, res) => {
     res.render('admin_commons',
         {data :
             {
-              //  users: users,
                 commonId: req.params.commonId,
                 cowPrice: cowPrice,
                 cowMax: cowMax,
