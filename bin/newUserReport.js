@@ -21,8 +21,8 @@ async function get_users_in_commons_and_make_report(commonId, reportId) {
 	console.log(`starting report for commons ${commonId}...`)
 	return db.sequelize.query(
 		'SELECT u.id, u.firstName, u.lastName, u.email, u.type, ' +
-		`(${get_wealth} u.id AND CommonId = ?) AS wealth, ` +
-		`(${get_cows} u.id AND CommonId = ?) AS cows ` +
+		`(SELECT SUM(wealth) FROM UserWealths WHERE UserId = u.id AND CommonId = ?) AS wealth, ` +
+		`(SELECT COUNT(health) FROM Cows WHERE UserId = u.id AND CommonId = ?) AS cows ` +
 		'FROM UserCommons AS uc JOIN Users AS u ON u.id = uc.UserId  WHERE uc.CommonId = ? ',
 		{
 			replacements: [
