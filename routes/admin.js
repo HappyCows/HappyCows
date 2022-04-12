@@ -18,10 +18,12 @@ var admin_milking_test =  require('../views/admin_milking_test');
 var admin_download =  require('../views/admin_download');
 
 let {auth_middleware, admin_middleware} = require("../utils/auth");
+const admin_common_get_json = require('../views/admin_common_get_json');
 
 router.get('/', auth_middleware, admin_middleware, admin_get);
 router.get('/download/:commonId', auth_middleware, admin_middleware, admin_download);
 router.get('/common/:commonId', auth_middleware, admin_middleware, admin_common_get);
+router.get('/api/common/:commonId', auth_middleware, admin_middleware, admin_common_get_json);
 router.get('/report/:reportId', auth_middleware, admin_middleware, admin_report);
 router.post('/common', auth_middleware, admin_middleware, admin_common_post);
 
