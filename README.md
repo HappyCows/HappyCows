@@ -154,7 +154,13 @@ https://sequelize.org/master/manual/raw-queries.html
 
 # Running on Heroku
 
-To run on Heroku, you will need these config variables. 
+
+
+To run on Heroku, you will need to do the following:
+
+1. Create a Heroku app
+2. Add the Cleardb MySQL add on.
+3. Set these config variables (e.g. with `heroku config:edit -a myapp.herokuapp.com`)
 
 ```
 CLEARDB_DATABASE_URL='insert-value-here'
