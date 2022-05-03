@@ -157,7 +157,6 @@ https://sequelize.org/master/manual/raw-queries.html
 To run on Heroku, you will need these config variables. 
 
 ```
-ADMIN_EMAILS='phtcon@ucsb.edu, vanbrocklin@ucsb.edu'
 CLEARDB_DATABASE_URL='insert-value-here'
 DB_HOSTNAME='copy-from-databaseurl'
 DB_NAME='copy-from-databaseurl'
