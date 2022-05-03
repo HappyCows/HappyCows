@@ -174,3 +174,53 @@ GOOGLE_OAUTH_CLIENT_SECRET='get-from-google-developer-console'
 NODE_ENV=production
 ```
 
+This should get you to a login screen. 
+
+# Adding an admin user on Heroku
+
+1. Then, to get an admin user, login in once to establish the user in the users table.
+2. Access the database using a mysql client.  At the command line, break up the url like this:
+   ```
+   mysql -u siduffsdf --password=s8sdf -h us-cdbr-east-05.cleardb.net -D heroku_1234abcd56789
+   ```
+3. Modify the user desired as shown below
+
+
+```
+mysql> show tables;
++----------------------------------+
+| Tables_in_heroku_9021cdae5397029 |
++----------------------------------+
+| commons                          |
+| commonshealths                   |
+| configs                          |
+| cows                             |
+| tieredtaxings                    |
+| usercommons                      |
+| users                            |
+| userwealths                      |
++----------------------------------+
+8 rows in set (0.11 sec)
+
+mysql> select * from users;
++----+-----------+----------+-----------------+------+--------------------------------------+---------------------+---------------------+
+| id | firstName | lastName | email           | type | token                                | createdAt           | updatedAt           |
++----+-----------+----------+-----------------+------+--------------------------------------+---------------------+---------------------+
+|  4 | Phill     | Conrad   | phtcon@ucsb.edu | user | 1484ce90-cb21-11ec-ba92-6739fc9837e6 | 2022-05-03 20:39:08 | 2022-05-03 20:39:08 |
++----+-----------+----------+-----------------+------+--------------------------------------+---------------------+---------------------+
+1 row in set (0.11 sec)
+
+mysql> update users set type='admin' where id='4';
+Query OK, 1 row affected (0.35 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from users;
++----+-----------+----------+-----------------+-------+--------------------------------------+---------------------+---------------------+
+| id | firstName | lastName | email           | type  | token                                | createdAt           | updatedAt           |
++----+-----------+----------+-----------------+-------+--------------------------------------+---------------------+---------------------+
+|  4 | Phill     | Conrad   | phtcon@ucsb.edu | admin | 1484ce90-cb21-11ec-ba92-6739fc9837e6 | 2022-05-03 20:39:08 | 2022-05-03 20:39:08 |
++----+-----------+----------+-----------------+-------+--------------------------------------+---------------------+---------------------+
+1 row in set (0.11 sec)
+
+mysql> 
+```
