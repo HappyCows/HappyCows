@@ -154,19 +154,15 @@ https://sequelize.org/master/manual/raw-queries.html
 
 # Running on Heroku
 
-To run on Heroku, you will need these config variables.  Note that some of these are redundant; it may be that some are no longer needed; but for now, this is the safest approach (i.e. it is known to work.)
-
+To run on Heroku, you will need these config variables. 
 
 ```
 ADMIN_EMAILS='phtcon@ucsb.edu, vanbrocklin@ucsb.edu'
 CLEARDB_DATABASE_URL='insert-value-here'
-DATABASE_URL='insert-value-here'
 DB_HOSTNAME='copy-from-databaseurl'
 DB_NAME='copy-from-databaseurl'
 DB_PASSWORD='copy-from-databaseurl'
 DB_USERNAME='copy-from-databaseurl'
-GOOGLE_CLIENT_ID='get-from-google-developer-console'
-GOOGLE_CLIENT_SECRET='get-from-google-developer-console'
 GOOGLE_OAUTH_CALLBACK_URL='https://happycows.herokuapp.com/users/auth_callback'
 GOOGLE_OAUTH_CLIENT_ID='get-from-google-developer-console'
 GOOGLE_OAUTH_CLIENT_SECRET='get-from-google-developer-console'
