@@ -22,6 +22,12 @@ console.log(get_users({
 }));
 var app = express();
 
+// from https://www.npmjs.com/package/swagger-ui-express
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 //Uncomment this line to place tables back in database
 db.Users.sync();
 db.UserCommons.sync();
