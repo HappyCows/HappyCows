@@ -26,12 +26,18 @@ router.get('/common/:commonId', auth_middleware, admin_middleware, admin_common_
 
   /**
    * @swagger
-   * /:
+   * /api/common:
    *   get:
-   *     description: Returns the homepage
+   *     description: Returns info about a commons
    *     responses:
    *       200:
-   *         description: hello world
+   *         description: Info about the commons 
+   *     parameters:
+   *       - in: path
+   *         name: commonId
+   *         type: string
+   *         required: true
+   *         description: id for the common
    */
 router.get('/api/common/:commonId', auth_middleware, admin_middleware, admin_common_get_json);
 router.get('/report/:reportId', auth_middleware, admin_middleware, admin_report);
