@@ -33,11 +33,11 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'Hello World',
+      title: 'HappyCows',
       version: '1.0.0',
     },
   },
-  apis: ['./src/routes*.js'], // files containing annotations as above
+  apis: ['./routes/*.js'], // files containing annotations as above
 };
 
 // Initialize swagger-jsdoc -> returns validated swagger spec in json format
