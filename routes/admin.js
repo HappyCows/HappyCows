@@ -26,7 +26,7 @@ router.get('/common/:commonId', auth_middleware, admin_middleware, admin_common_
 
   /**
    * @swagger
-   * /api/common:
+   * /admin/api/common/{commonId}:
    *   get:
    *     description: Returns info about a commons
    *     responses:
