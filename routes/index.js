@@ -10,6 +10,7 @@ const notapage = require("../views/error")
 const commonsjoin = require("../views/user_common_join_post")
 const commonsenter = require("../views/user_common_enter")
 const usercommons = require("../views/user_commons")
+const leaderboard_get = require("../views/leaderboard_get")
 let {auth_middleware} = require("../utils/auth")
 
 /* GET home page. */
@@ -24,6 +25,8 @@ router.get('/play/:id', auth_middleware, usercommons);
 router.post('/enter', auth_middleware, commonsenter);
 router.post('/buycow', auth_middleware, user_cow_post);
 router.post('/sellcow', auth_middleware, user_sell_cow_post);
+
+router.get('/leaderboard/:commonId', auth_middleware, leaderboard_get);
 
 
 
